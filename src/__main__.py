@@ -27,7 +27,6 @@ def main() -> None:
     args = parser.parse_args()
     try:
         model = Small_LLM_Model()
-        start_time = time.time()
         path = model.get_path_to_vocab_file()
         str_id, id_str = load_vocabulary(path)
         validate_fun = validate_functions(args.functions_definition)
@@ -47,8 +46,6 @@ def main() -> None:
             results.append(data.model_dump())
         with open(args.output, 'w') as f:
             json.dump(results, f, indent=2)
-        end_time = time.time()
-        print(end_time - start_time)
     except Exception as e:
         print(f"Unexpected error: {e}")
 
